@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open URLs in New Tabs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        textarea {
+            width: 100%;
+            max-width: 1000px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            resize: none;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            width: 80vw;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <textarea id="urlInput" rows="10" placeholder="Enter each URL on a new line..."></textarea><br><br>
+        <button onclick="confirmOpenUrls()">Open All URLs</button>
+    </div>
+
+    <script>
+        function confirmOpenUrls() {
+            const input = document.getElementById("urlInput").value;
+            const urls = input.split("\n").map(url => url.trim()).filter(url => url);
+            
+            if (urls.length === 0) {
+                alert("Please enter at least one URL.");
+                return;
+            }
+
+            const userConfirmed = confirm(`This will open ${urls.length} new tabs. Do you want to proceed?`);
+            
+            if (userConfirmed) {
+                openUrls(urls);
+            }
+        }
+
+        function openUrls(urls) {
+            // Trigger all popups in a single event handler to maximize success
+            urls.forEach(url => {
+                if (!/^https?:\/\//i.test(url)) {
+                    url = "http://" + url; // Add http if no scheme provided
+                }
+                window.open(url, '_blank');
+            });
+        }
+    </script>
+</body>
+</html>
