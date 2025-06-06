@@ -3,6 +3,7 @@ let currentIndex = 0;
 document.getElementById('urlInput').addEventListener('input', updateUrlCounter);
 document.getElementById('openBatchButton').addEventListener('click', openNextBatch);
 document.getElementById('maxButton').addEventListener('click', setMaxBatch);
+document.getElementById('resetButton').addEventListener('click', resetCounter);
 
 function updateUrlCounter() {
     const input = document.getElementById("urlInput").value;
@@ -23,6 +24,7 @@ function updateUrlCounter() {
 
     if (currentIndex >= urlCount) {
         currentIndex = 0;
+        hideResetButton();
     }
 }
 
@@ -62,13 +64,17 @@ function openNextBatch() {
 
     currentIndex = endIndex;
 
+    if (currentIndex > 0) {
+        showResetButton();
+    }
+
     const remaining = totalUrls - currentIndex;
     if (remaining > 0) {
         document.getElementById('urlCounter').textContent =
-            `URLs: ${totalUrls} (${remaining} remaining)`;
+            `URLs: ${totalUrls} ( ${remaining} remaining )`;
     } else {
         document.getElementById('urlCounter').textContent =
-            `URLs: ${totalUrls} (all opened)`;
+            `URLs: ${totalUrls} ( all opened )`;
     }
 }
 
@@ -83,6 +89,31 @@ function setMaxBatch() {
     const remaining = totalUrls - currentIndex;
 
     document.getElementById('batchSize').value = remaining > 0 ? remaining : 0;
+}
+
+function resetCounter() {
+    currentIndex = 0;
+
+    hideResetButton();
+
+    const input = document.getElementById("urlInput").value;
+    const urls = input
+        .split("\n")
+        .map(url => url.trim())
+        .filter(url => url);
+    const totalUrls = urls.length;
+
+    document.getElementById('urlCounter').textContent = `URLs: ${totalUrls}`;
+}
+
+function showResetButton() {
+    const btn = document.getElementById('resetButton');
+    btn.style.display = "inline-block";
+}
+
+function hideResetButton() {
+    const btn = document.getElementById('resetButton');
+    btn.style.display = "none";
 }
 
 function showToast(message) {

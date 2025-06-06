@@ -69,6 +69,21 @@ input[type="number"] {
 button {
     vertical-align: middle;
 }
+#resetButton {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 8px;
+    transition: background-color 0.3s ease;
+}
+
+#resetButton:hover {
+    background-color: #c82333;
+}
 
 #toast {
     position: fixed;
