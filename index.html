@@ -1,17 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>URL Opener</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
     <div class="container">
-        <textarea id="urlInput" rows="10" placeholder="Enter each URL on a new line..."></textarea><br><br>
-        <button onclick="openUrls()">Open All URLs</button>
+        <textarea
+            id="urlInput"
+            rows="10"
+            placeholder="Enter each URL on a new line..."
+        ></textarea>
+        <br /><br />
+
+        <label for="batchSize">Batch size:</label>
+        <input
+            type="number"
+            id="batchSize"
+            min="1"
+            value="10"
+        />
+        <button id="maxButton">Max</button>
+        <button id="openBatchButton">Open Next URLs</button>
+
         <div id="urlCounter">URLs: 0</div>
     </div>
+
+    <div id="toast"></div>
+
     <script src="script.js"></script>
 </body>
 </html>
