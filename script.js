@@ -1,6 +1,7 @@
 let currentIndex = 0;
 
 document.getElementById('urlInput').addEventListener('input', updateUrlCounter);
+document.getElementById('batchSize').addEventListener('input', updateUrlCounter);
 document.getElementById('openBatchButton').addEventListener('click', openNextBatch);
 document.getElementById('maxButton').addEventListener('click', setMaxBatch);
 document.getElementById('resetButton').addEventListener('click', resetCounter);
@@ -14,9 +15,10 @@ function updateUrlCounter() {
 
     const urlCount = urls.length;
     const urlCounter = document.getElementById('urlCounter');
-    urlCounter.textContent = `URLs: ${urlCount}`;
+    urlCounter.textContent = `Total URLs: ${urlCount}`;
 
-    if (urlCount >= 30) {
+    let batchSize = parseInt(document.getElementById('batchSize').value, 10);
+    if (urlCount >= 30 && batchSize > 20) {
         urlCounter.classList.add('warning');
     } else {
         urlCounter.classList.remove('warning');
@@ -71,10 +73,10 @@ function openNextBatch() {
     const remaining = totalUrls - currentIndex;
     if (remaining > 0) {
         document.getElementById('urlCounter').textContent =
-            `URLs: ${totalUrls} ( ${remaining} remaining )`;
+            `Total URLs: ${totalUrls} (${remaining} remaining)`;
     } else {
         document.getElementById('urlCounter').textContent =
-            `URLs: ${totalUrls} ( all opened )`;
+            `Total URLs: ${totalUrls} (all opened)`;
     }
 }
 
@@ -103,7 +105,7 @@ function resetCounter() {
         .filter(url => url);
     const totalUrls = urls.length;
 
-    document.getElementById('urlCounter').textContent = `URLs: ${totalUrls}`;
+    document.getElementById('urlCounter').textContent = `Total URLs: ${totalUrls}`;
 }
 
 function showResetButton() {

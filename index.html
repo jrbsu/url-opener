@@ -15,24 +15,30 @@
         ></textarea>
         <br /><br />
 
-        <label for="batchSize">Batch size:</label>
-        <input
-            type="number"
-            id="batchSize"
-            min="1"
-            value="10"
-        />
-        <button id="maxButton">Max</button>
-        <button id="openBatchButton">Open Next URLs</button>
+        <div id="buttonsContainer">
+            <label for="batchSize">Batch size:</label>
+            <input
+                type="number"
+                id="batchSize"
+                min="1"
+                value="10"
+            />
+            <button id="maxButton">Max</button>
+            <button id="openBatchButton">Open Next URLs</button>
 
-        <!-- RESET button (hidden until the first Open Next) -->
-        <button id="resetButton" style="display: none;">Reset</button>
+            <!-- RESET button (hidden until the first Open Next) -->
+            <button id="resetButton" style="display: none;">Reset</button>
 
-        <div id="urlCounter">URLs: 0</div>
+            <div id="urlCounter">Total URLs: 0</div>
+        </div>
     </div>
 
     <!-- Toaster container -->
     <div id="toast"></div>
+
+    <footer>
+        A tool by <a href="https://joesutherland.rocks" target="_blank" rel="noopener">Joe Sutherland</a> | <a href="https://github.com/jrbsu/url-opener" target="_blank" rel="noopener">View on Github</a>
+    </footer>
 
     <script src="script.js"></script>
 </body>
