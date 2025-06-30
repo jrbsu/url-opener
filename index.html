@@ -18,15 +18,20 @@
         <div id="buttonsContainer">
             <label for="batchSize">Batch size:</label>
             <input
-                type="number"
-                id="batchSize"
-                min="1"
-                value="10"
+            type="number"
+            id="batchSize"
+            min="1"
+            value="10"
             />
-            <button id="maxButton">Max</button>
-            <button id="openBatchButton">Open Next URLs</button>
 
-            <!-- RESET button (hidden until the first Open Next) -->
+            <!-- Fraction buttons -->
+            <button id="allButton" class="fraction">All</button>
+            <button id="halfButton" class="fraction">1/2</button>
+            <button id="thirdButton" class="fraction">1/3</button>
+            <button id="quarterButton" class="fraction">1/4</button>
+
+            <!-- Main controls -->
+            <button id="openBatchButton">Open Next URLs</button>
             <button id="resetButton" style="display: none;">Reset</button>
 
             <div id="urlCounter">Total URLs: 0</div>

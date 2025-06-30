@@ -3,7 +3,6 @@ let currentIndex = 0;
 document.getElementById('urlInput').addEventListener('input', updateUrlCounter);
 document.getElementById('batchSize').addEventListener('input', updateUrlCounter);
 document.getElementById('openBatchButton').addEventListener('click', openNextBatch);
-document.getElementById('maxButton').addEventListener('click', setMaxBatch);
 document.getElementById('resetButton').addEventListener('click', resetCounter);
 
 function updateUrlCounter() {
@@ -80,17 +79,42 @@ function openNextBatch() {
     }
 }
 
-function setMaxBatch() {
-    const input = document.getElementById("urlInput").value;
-    const urls = input
-        .split("\n")
-        .map(url => url.trim())
-        .filter(url => url);
+// Fraction buttons
+document
+  .getElementById('allButton')
+  .addEventListener('click', () => setFractionBatch(1));
 
-    const totalUrls = urls.length;
-    const remaining = totalUrls - currentIndex;
+document
+  .getElementById('halfButton')
+  .addEventListener('click', () => setFractionBatch(2));
 
-    document.getElementById('batchSize').value = remaining > 0 ? remaining : 0;
+document
+  .getElementById('thirdButton')
+  .addEventListener('click', () => setFractionBatch(3));
+
+document
+  .getElementById('quarterButton')
+  .addEventListener('click', () => setFractionBatch(4));
+
+function setFractionBatch(divisor) {
+    resetCounter();
+    const raw = document.getElementById('urlInput').value;
+    const urls = raw
+      .split('\n')
+      .map(u => u.trim())
+      .filter(u => u);
+
+    const total = urls.length;
+    const remaining = Math.max(0, total - currentIndex);
+
+    let val;
+    if (divisor === 1) {
+      val = remaining;
+    } else {
+      val = Math.ceil(remaining / divisor);
+    }
+
+    document.getElementById('batchSize').value = val > 0 ? val : 0;
 }
 
 function resetCounter() {

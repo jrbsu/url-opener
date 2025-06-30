@@ -14,7 +14,7 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: Helvetica, sans-serif;
     background-color: var(--color-background);
     color: var(--color-text);
     margin: 0;
@@ -56,6 +56,27 @@ button {
 button:hover {
     background-color: var(--color-button-hover-bg);
 }
+
+button.fraction {
+    padding: 8px 14px;
+    font-size: 14px;
+    margin: 0 4px;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--color-button-bg);
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+button.fraction:hover {
+    background-color: var(--color-button-hover-bg);
+}
+
+button, input[type="number"] {
+    vertical-align: middle;
+}
+
 .container {
     text-align: center;
     padding: 20px;
